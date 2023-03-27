@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
+  <script src="bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <style>
+    nav {
+      color: white;
+    }
+
+    nav * {
+      color: white;
+    }
+
+    .logo {
+      height: 70px;
+    }
+
+    main {
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    main button {
+      width: 40%;
+      height: 200px;
+      background-color: rgb(13, 110, 253);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgb(92, 92, 92);
+      color: white;
+      font-size: 20px;
+      font-weight: bolder;
+      border: none;
+    }
+
+    @media screen and (max-width: 600px) {
+      main {
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main button {
+      width: 80%;
+      height: 200px;
+      background-color: rgb(11, 94, 215);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+    }
+    }
+    main button a {
+      color: inherit;
+      text-decoration: none;
+    }
+    main button a:hover{
+      color: inherit;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-xl bg-primary text-light">
+
+    </div>
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="dashboard.html"><img src="images/LOGO.png" class="logo" alt="">B AND D
+				System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-light"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item">
+            <a class="nav-link text-light" href="registernewbirth.html">Register New Birth</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="registernewdeath.html">Register New Death</a>
+          </li>
+          <li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false">
+							Check Registration
+						</a>
+						<ul class="dropdown-menu bg-light">
+							<li><a class="dropdown-item " href="registeredbirth.html">Check Registered Birth</a></li>
+							<li>
+								<hr class="dropdown-divider ">
+							</li>
+							<li><a class="dropdown-item " href="registereddeath.html">Check Registered Death</a></li>
+						</ul>
+					</li>
+          <li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false">
+							Print Certificate
+						</a>
+						<ul class="dropdown-menu bg-light">
+							<li><a class="dropdown-item " href="printbirth.html">Print Birth Certificate</a></li>
+							<li>
+								<hr class="dropdown-divider ">
+							</li>
+							<li><a class="dropdown-item  outline-dark" href="printdeath.html">Print Death Certificate</a></li>
+						</ul>
+					</li>
+          
+         
+        </ul>
+       
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <button onclick="Registered()">
+     Check Registered Birth
+    </button>
+    <button onclick="registeredbirth()">
+     Register New Birth 
+    </button>
+    <button onclick="Registered()">
+      Print Birth Certificate
+    </button>
+    <button onclick="CheckRegisteredDeath()">
+      Check Registered Death
+    </button>
+    <button onclick="RegisterNewDeath()">
+      Register New Death
+    </button>
+    <button onclick="CheckRegisteredDeath()">
+      Print Death Certificate
+    </button>
+  </main>
+</body>
+
+</html>
+
+<script>
+function registeredbirth() {
+  window.location.href="registernewbirth.html"
+}
+function Registered() {
+  window.location.href="registeredbirth.html"
+}
+function PrintBirth() {
+  window.location.href="printbirth.html"
+}
+function CheckRegisteredDeath() {
+  window.location.href="registereddeath.html"
+}
+function RegisterNewDeath() {
+  window.location.href="registernewdeath.html"
+}
+function Printdeath() {
+  window.location.href="printdeath.html"
+}
+
+</script>

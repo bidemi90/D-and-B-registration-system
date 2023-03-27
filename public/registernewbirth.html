@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Birth Registration Form</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
+	<script src="bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+	<style>
+		nav {
+			color: white;
+		}
+
+		nav * {
+			color: white;
+		}
+
+		.logo {
+			height: 70px;
+		}
+
+		form {
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			font-family: Arial, sans-serif;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 5px;
+			font-weight: bold;
+		}
+
+		input,
+		select,
+		textarea {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 16px;
+			font-family: Arial, sans-serif;
+			box-sizing: border-box;
+		}
+
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			padding: 12px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			font-family: Arial, sans-serif;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+
+		@media (max-width: 600px) {
+			form {
+				max-width: 100%;
+				padding: 10px;
+			}
+		}
+
+		.form {
+			margin-top: 20px;
+			box-shadow: blue;
+		}
+
+		.form input:focus {
+			border: 1px solid rgb(13, 110, 253);
+			outline: none;
+		}
+
+		.form label:focus-within {
+			color: rgb(13, 110, 253);
+		}
+
+		.topp {
+			width: 100%;
+			color: rgb(13, 110, 253);
+			text-transform: capitalize;
+			text-align: center;
+			margin: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-xl bg-primary text-light">
+
+		</div>
+		<div class="container-fluid">
+			<a class="navbar-brand text-light" href="dashboard.html"><img src="images/LOGO.png" class="logo" alt="">B AND D
+				System</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon text-light"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link text-light" href="registernewbirth.html">Register New Birth</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-light" href="registernewdeath.html">Register New Death</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false">
+							Check Registration
+						</a>
+						<ul class="dropdown-menu bg-light">
+							<li><a class="dropdown-item " href="registeredbirth.html">Check Registered Birth</a></li>
+							<li>
+								<hr class="dropdown-divider ">
+							</li>
+							<li><a class="dropdown-item " href="registereddeath.html">Check Registered Death</a></li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false">
+							Print Certificate
+						</a>
+						<ul class="dropdown-menu bg-light">
+							<li><a class="dropdown-item " href="printbirth.html">Print Birth Certificate</a></li>
+							<li>
+								<hr class="dropdown-divider ">
+							</li>
+							<li><a class="dropdown-item  outline-dark" href="printdeath.html">Print Death
+									Certificate</a></li>
+						</ul>
+					</li>
+
+
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+	<h2 class="topp">
+		fill in the details to register
+	</h2>
+	<form class="form">
+		<label for="childName">Child's Full Name:
+			<input type="text" id="childName" name="childName" required></label>
+
+		<label for="dob">Date of Birth:
+			<input type="date" id="dob" name="dob" required></label>
+
+		<label for="placeOfBirth">Place of Birth:
+			<input type="text" id="placeOfBirth" name="placeOfBirth" required></label>
+
+		<label for="gender">Gender:
+			<select id="gender" name="gender" required>
+				<option value="">--Select--</option>
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+				<option value="other">Other</option>
+			</select>
+		</label>
+
+		<label for="motherName">Mother's Full Name:
+			<input type="text" id="motherName" name="motherName" required></label>
+
+		<label for="fatherName">Father's Full Name:
+			<input type="text" id="fatherName" name="fatherName" required></label>
+
+
+		<label for="mother_nationality">Nationality of the Mother:
+			<input type="text" id="mother_nationality" name="mother-nationality" required></label>
+
+		<label for="father_nationality">Nationality of the Father:
+			<input type="text" id="father_nationality" name="father-nationality" required></label>
+
+
+
+		<label for="mother_occupation">Occupation of the Mother:
+			<input type="text" id="mother_occupation" name="mother-occupation" required></label>
+
+		<label for="father_occupation">Occupation of the Father:
+			<input type="text" id="father_occupation" name="father-occupation" required></label>
+
+		<label for="parent_address">Residential Address of the Parents:
+			<textarea id="parent_address" name="parent_address" required></textarea></label>
+
+		<label for="registra_name">Registra name:
+			<input type="text" id="registra_name" name="registra_name" required></label>
+
+		<button type="button" onclick="sub(event)" class="btn btn-outline-primary">Register</button>
+	</form>
+</body>
+
+</html>
+
+
+<script>
+
+
+
+
+
+	const firebaseConfig = {
+		apiKey: "AIzaSyBIJG2GtrpC15KFiG0XqcB_bwqN6IP5iak",
+		authDomain: "b-and-d-registration-system.firebaseapp.com",
+		projectId: "b-and-d-registration-system",
+		storageBucket: "b-and-d-registration-system.appspot.com",
+		messagingSenderId: "985438228105",
+		appId: "1:985438228105:web:43fa150950d3dc43a24058"
+	};
+
+	// Initialize Firebase
+	const app = firebase.initializeApp(firebaseConfig);
+	const db = firebase.firestore();
+</script>
+<script>
+
+
+
+
+	let alldata = []
+	let index = 0
+	db.collection("birth-reg").get().then((querySnapshot) => {
+
+		querySnapshot.forEach((doc) => {
+
+			console.log(doc);
+			console.log(doc.data());
+			let element = doc.data()
+			alldata.push(doc.data())
+
+
+		});
+	});
+
+
+
+	function generateRandomCode() {
+		const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		let code = '';
+
+		// Generate 3 random alphabets
+		for (let i = 0; i < 3; i++) {
+			code += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+		}
+
+		// Generate 7 random numbers
+		for (let i = 0; i < 7; i++) {
+			code += Math.floor(Math.random() * 10);
+		}
+
+		return code;
+	}
+	let randomCode = generateRandomCode();
+	console.log(randomCode);
+
+
+
+
+	let childName = document.getElementById("childName")
+	let dob = document.getElementById("dob")
+	let placeOfBirth = document.getElementById("placeOfBirth")
+	let gender = document.getElementById("gender")
+	let motherName = document.getElementById("motherName")
+	let fatherName = document.getElementById("fatherName")
+	let mother_nationality = document.getElementById("mother_nationality")
+	let father_nationality = document.getElementById("father_nationality")
+	let mother_occupation = document.getElementById("mother_occupation")
+	let father_occupation = document.getElementById("father_occupation")
+	let parent_address = document.getElementById("parent_address")
+	let registra_name = document.getElementById("registra_name")
+	let reg_date = Date()
+	let Registration_No = randomCode
+
+
+
+
+
+
+
+
+
+
+	function sub(ev) {
+		ev.preventDefault();
+
+
+		if (document.getElementById("childName").value == "" ||
+			document.getElementById("dob").value == "" ||
+			document.getElementById("placeOfBirth").value == "" ||
+			document.getElementById("gender").value == "" ||
+			document.getElementById("motherName").value == "" ||
+			document.getElementById("fatherName").value == "" ||
+			document.getElementById("mother_nationality").value == "" ||
+			document.getElementById("father_nationality").value == "" ||
+			document.getElementById("mother_occupation").value == "" ||
+			document.getElementById("father_occupation").value == "" ||
+			document.getElementById("parent_address").value == "" ||
+			document.getElementById("registra_name").value == "") {
+				alert("Fill All Input")
+		} else {
+
+
+			let found = alldata.find((me) => me.registration_no == Registration_No)
+
+			if (found) {
+				function generateRandomCode() {
+					const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+					let code = '';
+
+					// Generate 3 random alphabets
+					for (let i = 0; i < 3; i++) {
+						code += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+					}
+
+					// Generate 7 random numbers
+					for (let i = 0; i < 7; i++) {
+						code += Math.floor(Math.random() * 10);
+					}
+
+					return code;
+				}
+				let randomCode = generateRandomCode();
+				console.log(randomCode);
+
+				sub()
+
+			} else {
+
+
+				// Add a new document in collection "cities"
+				db.collection("birth-reg").doc().set({
+					childName: childName.value,
+					dob: dob.value,
+					placeOfBirth: placeOfBirth.value,
+					gender: gender.value,
+					motherName: motherName.value,
+					fatherName: fatherName.value,
+					mother_nationality: mother_nationality.value,
+					father_nationality: father_nationality.value,
+					mother_occupation: mother_occupation.value,
+					father_occupation: father_occupation.value,
+					parent_address: parent_address.value,
+					registra_name: registra_name.value,
+					reg_date: reg_date,
+					registration_no: Registration_No,
+				})
+					.then(() => {
+						console.log("Document successfully written!");
+						location.href = "registeredbirth.html"
+					})
+					.catch((error) => {
+						console.error("Error writing document: ", error);
+					});
+
+			}
+
+		}
+
+
+
+
+
+
+	}
+
+</script>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Death Registration Form</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
+	<script src="bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+
+	<style>
+		nav {
+			color: white;
+		}
+
+		nav * {
+			color: white;
+		}
+
+		.logo {
+			height: 70px;
+		}
+
+		form {
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			font-family: Arial, sans-serif;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 5px;
+			font-weight: bold;
+		}
+
+		input,
+		select {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 16px;
+			font-family: Arial, sans-serif;
+			box-sizing: border-box;
+		}
+
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			padding: 12px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			font-family: Arial, sans-serif;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+
+		@media (max-width: 600px) {
+			form {
+				max-width: 100%;
+				padding: 10px;
+			}
+		}
+
+		.form {
+			margin-top: 20px;
+			box-shadow: blue;
+		}
+
+		.form input:focus {
+			border: 1px solid rgb(13, 110, 253);
+			outline: none;
+		}
+
+		.form label:focus-within {
+			color: rgb(13, 110, 253);
+		}
+
+		.topp {
+			width: 100%;
+			color: rgb(13, 110, 253);
+			text-transform: capitalize;
+			text-align: center;
+			margin: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-xl bg-primary text-light">
+
+		</div>
+		<div class="container-fluid">
+			<a class="navbar-brand text-light" href="dashboard.html"><img src="images/LOGO.png" class="logo" alt="">B AND D
+				System</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon text-light"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link text-light" href="registernewbirth.html">Register New Birth</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-light" href="registernewdeath.html">Register New Death</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false">
+							Check Registration
+						</a>
+						<ul class="dropdown-menu bg-light">
+							<li><a class="dropdown-item " href="registeredbirth.html">Check Registered Birth</a></li>
+							<li>
+								<hr class="dropdown-divider ">
+							</li>
+							<li><a class="dropdown-item " href="registereddeath.html">Check Registered Death</a></li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false">
+							Print Certificate
+						</a>
+						<ul class="dropdown-menu bg-light">
+							<li><a class="dropdown-item " href="printbirth.html">Print Birth Certificate</a></li>
+							<li>
+								<hr class="dropdown-divider ">
+							</li>
+							<li><a class="dropdown-item  outline-dark" href="printdeath.html">Print Death
+									Certificate</a></li>
+						</ul>
+					</li>
+
+
+				</ul>
+				
+			</div>
+		</div>
+	</nav>
+	<h2 class="topp">
+		fill in the details to register
+	</h2>
+	<form class="form">
+		<label for="deceasedName">Deceased's Full Name:</label>
+		<input type="text" id="deceasedName" name="deceasedName" required>
+
+		<label for="dob">Date of Birth:</label>
+		<input type="date" id="dob" name="dob" required>
+
+		<label for="dod">Date of Death:</label>
+		<input type="date" id="dod" name="dod" required>
+
+		<label for="placeOfDeath">Place of Death:</label>
+		<input type="text" id="placeOfDeath" name="placeOfDeath" required>
+
+		<label for="causeOfDeath">Cause of Death:</label>
+		<input type="text" id="causeOfDeath" name="causeOfDeath" required>
+
+		<label for="gender">Gender:</label>
+		<select id="gender" name="gender" required>
+			<option value="">--Select--</option>
+			<option value="male">Male</option>
+			<option value="female">Female</option>
+			<option value="other">Other</option>
+		</select>
+
+		<label for="DeceasedNationality"> Deceased's Nationality:</label>
+		<input type="text" id="DeceasedNationality" name="DeceasedNationality" required>
+
+		<label for="motherName">Mother's Full Name:</label>
+		<input type="text" id="motherName" name="motherName" required>
+
+		<label for="fatherName">Father's Full Name:</label>
+		<input type="text" id="fatherName" name="fatherName" required>
+		<label for="Registra_name">Registra name:</label>
+		<input type="text" id="Registra_name" name="fatherName" required>
+
+		<button type="button" onclick="sub(event)" class="btn btn-outline-primary">Register</button>
+	</form>
+</body>
+
+</html>
+
+
+<script>
+
+
+
+
+
+	const firebaseConfig = {
+		apiKey: "AIzaSyBIJG2GtrpC15KFiG0XqcB_bwqN6IP5iak",
+		authDomain: "b-and-d-registration-system.firebaseapp.com",
+		projectId: "b-and-d-registration-system",
+		storageBucket: "b-and-d-registration-system.appspot.com",
+		messagingSenderId: "985438228105",
+		appId: "1:985438228105:web:43fa150950d3dc43a24058"
+	};
+
+	// Initialize Firebase
+	const app = firebase.initializeApp(firebaseConfig);
+	const db = firebase.firestore();
+</script>
+<script>
+
+
+
+
+	let alldata = []
+	let index = 0
+	db.collection("death-reg").get().then((querySnapshot) => {
+
+		querySnapshot.forEach((doc) => {
+
+			console.log(doc);
+			console.log(doc.data());
+			let element = doc.data()
+			alldata.push(doc.data())
+
+
+		});
+	});
+
+
+
+	function generateRandomCode() {
+		const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		let code = '';
+
+		// Generate 3 random alphabets
+		for (let i = 0; i < 3; i++) {
+			code += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+		}
+
+		// Generate 7 random numbers
+		for (let i = 0; i < 7; i++) {
+			code += Math.floor(Math.random() * 10);
+		}
+
+		return code;
+	}
+	let randomCode = generateRandomCode();
+	console.log(randomCode);
+
+
+
+
+	let deceasedName = document.getElementById("deceasedName")
+	let dob = document.getElementById("dob")
+	let dod = document.getElementById("dod")
+	let placeOfDeath = document.getElementById("placeOfDeath")
+	let causeOfDeath = document.getElementById("causeOfDeath")
+	let gender = document.getElementById("gender")
+	let DeceasedNationality = document.getElementById("DeceasedNationality")
+	let motherName = document.getElementById("motherName")
+	let fatherName = document.getElementById("fatherName")
+	let Registra_name = document.getElementById("Registra_name")
+	let reg_date = Date()
+	let Registration_No = randomCode
+
+	function sub(ev) {
+		ev.preventDefault();
+
+
+		if (document.getElementById("deceasedName").value == "" |
+			document.getElementById("dob").value == "" ||
+			document.getElementById("dod").value == "" ||
+			document.getElementById("placeOfDeath").value == "" ||
+			document.getElementById("causeOfDeath").value == "" ||
+			document.getElementById("gender").value == "" ||
+			document.getElementById("DeceasedNationality").value == "" ||
+			document.getElementById("motherName").value == "" ||
+			document.getElementById("fatherName").value == "" ||
+			document.getElementById("Registra_name").value == "" ) {
+			alert("Fill All Input")
+		} else {
+
+			let found = alldata.find((me) => me.Registration_no == Registration_No)
+
+			if (found) {
+				function generateRandomCode() {
+					const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+					let code = '';
+
+					// Generate 3 random alphabets
+					for (let i = 0; i < 3; i++) {
+						code += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+					}
+
+					// Generate 7 random numbers
+					for (let i = 0; i < 7; i++) {
+						code += Math.floor(Math.random() * 10);
+					}
+
+					return code;
+				}
+				let randomCode = generateRandomCode();
+				console.log(randomCode);
+
+				sub(ev)
+
+			} else {
+
+				// Add a new document in collection "cities"
+				db.collection("death-reg").doc().set({
+					deceasedName: deceasedName.value,
+					dob: dob.value,
+					dod: dod.value,
+					placeOfDeath: placeOfDeath.value,
+					causeOfDeath: causeOfDeath.value,
+					gender: gender.value,
+					DeceasedNationality: DeceasedNationality.value,
+					motherName: motherName.value,
+					fatherName: fatherName.value,
+					Registra_name: Registra_name.value,
+					reg_date: reg_date,
+					Registration_No: Registration_No,
+				})
+					.then(() => {
+						console.log("Document successfully written!");
+						location.href = "registereddeath.html"
+					})
+					.catch((error) => {
+						console.error("Error writing document: ", error);
+					});
+
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+	}
+
+</script>
