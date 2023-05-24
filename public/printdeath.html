@@ -2,7 +2,8 @@
 <html>
 
 <head>
-	<title>Birth Certificate</title>
+	<title>Death Certificate</title>
+	<link rel="shortcut icon" href="images/LOGO.png" type="image/x-icon">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
@@ -126,6 +127,14 @@
 
 </html>
 <script>
+
+let userbd = JSON.parse(localStorage.getItem("userbd"))
+    console.log(userbd);
+
+    if (userbd == null) {
+        location.href="index.html"
+    }
+
 	let print = JSON.parse(localStorage.getItem("print"))
 	console.log(print);
 

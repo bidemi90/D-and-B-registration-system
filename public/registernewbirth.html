@@ -3,6 +3,7 @@
 
 <head>
 	<title>Birth Registration Form</title>
+	<link rel="shortcut icon" href="images/LOGO.png" type="image/x-icon">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -101,7 +102,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-xl bg-primary text-light">
+	<nav class="navbar navbar-expand-xl bg-success text-light">
 
 		</div>
 		<div class="container-fluid">
@@ -140,25 +141,29 @@
 							Print Certificate
 						</a>
 						<ul class="dropdown-menu bg-light">
-							<li><a class="dropdown-item " href="printbirth.html">Print Birth Certificate</a></li>
+							<li><a class="dropdown-item " href="registeredbirth.html">Print Birth Certificate</a></li>
 							<li>
 								<hr class="dropdown-divider ">
 							</li>
-							<li><a class="dropdown-item  outline-dark" href="printdeath.html">Print Death
-									Certificate</a></li>
+							<li><a class="dropdown-item  outline-dark" href="registereddeath.html">Print Death Certificate</a></li>
 						</ul>
 					</li>
 
-
+					<div class="d-flex" role="search">
+					
+						<a class="btn btn-outline-light m-1 text-dark" 
+							href="index.html">log out</a>
+					</div>
 				</ul>
-
+				
 			</div>
 		</div>
 	</nav>
-	<h2 class="topp">
+		<h2 class="text-success text-center text-capitalize ">
+			
 		fill in the details to register
 	</h2>
-	<form class="form">
+	<form class="form bg-success text-light">
 		<label for="childName">Child's Full Name:
 			<input type="text" id="childName" name="childName" required></label>
 
@@ -204,7 +209,7 @@
 		<label for="registra_name">Registra name:
 			<input type="text" id="registra_name" name="registra_name" required></label>
 
-		<button type="button" onclick="sub(event)" class="btn btn-outline-primary">Register</button>
+		<button type="button" onclick="sub(event)" class="btn btn-light btn-outline-primary">Register</button>
 	</form>
 </body>
 
@@ -232,7 +237,12 @@
 </script>
 <script>
 
+let userbd = JSON.parse(localStorage.getItem("userbd"))
+    console.log(userbd);
 
+    if (userbd == null) {
+        location.href="index.html"
+    }
 
 
 	let alldata = []
@@ -364,10 +374,12 @@
 				})
 					.then(() => {
 						console.log("Document successfully written!");
+						alert("Birth Registration successfully written!");
 						location.href = "registeredbirth.html"
 					})
 					.catch((error) => {
 						console.error("Error writing document: ", error);
+						alert("Error writing document: ", error);
 					});
 
 			}

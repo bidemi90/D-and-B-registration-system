@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>B & d Registration System</title>
+  <link rel="shortcut icon" href="images/LOGO.png" type="image/x-icon">
   <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
   <script src="bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -35,7 +36,6 @@
     main button {
       width: 40%;
       height: 200px;
-      background-color: rgb(13, 110, 253);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -59,7 +59,6 @@
     main button {
       width: 80%;
       height: 200px;
-      background-color: rgb(11, 94, 215);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -81,7 +80,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-xl bg-primary text-light">
+  <nav class="navbar navbar-expand-xl bg-success text-light">
 
     </div>
     <div class="container-fluid">
@@ -119,38 +118,42 @@
 							Print Certificate
 						</a>
 						<ul class="dropdown-menu bg-light">
-							<li><a class="dropdown-item " href="printbirth.html">Print Birth Certificate</a></li>
+							<li><a class="dropdown-item " href="registeredbirth.html">Print Birth Certificate</a></li>
 							<li>
 								<hr class="dropdown-divider ">
 							</li>
-							<li><a class="dropdown-item  outline-dark" href="printdeath.html">Print Death Certificate</a></li>
+							<li><a class="dropdown-item  outline-dark" href="registereddeath.html">Print Death Certificate</a></li>
 						</ul>
 					</li>
-          
+          <div class="d-flex" role="search">
+					
+            <a class="btn btn-outline-light m-1 text-dark" 
+              href="index.html">log out</a>
+          </div>
          
         </ul>
-       
+        
       </div>
     </div>
   </nav>
 
   <main>
-    <button onclick="Registered()">
+    <button class="btn btn-success fs-4  fw-bold" onclick="Registered()">
      Check Registered Birth
     </button>
-    <button onclick="registeredbirth()">
+    <button  class="btn btn-success fs-4  fw-bold" onclick="registeredbirth()">
      Register New Birth 
     </button>
-    <button onclick="Registered()">
+    <button  class="btn btn-success fs-4  fw-bold" onclick="Registered()">
       Print Birth Certificate
     </button>
-    <button onclick="CheckRegisteredDeath()">
+    <button  class="btn btn-success fs-4  fw-bold" onclick="CheckRegisteredDeath()">
       Check Registered Death
     </button>
-    <button onclick="RegisterNewDeath()">
+    <button  class="btn btn-success fs-4  fw-bold" onclick="RegisterNewDeath()">
       Register New Death
     </button>
-    <button onclick="CheckRegisteredDeath()">
+    <button  class="btn btn-success fs-4  fw-bold" onclick="CheckRegisteredDeath()">
       Print Death Certificate
     </button>
   </main>
@@ -159,6 +162,14 @@
 </html>
 
 <script>
+
+let userbd = JSON.parse(localStorage.getItem("userbd"))
+    console.log(userbd);
+
+    if (userbd == null) {
+        location.href="index.html"
+    }
+
 function registeredbirth() {
   window.location.href="registernewbirth.html"
 }

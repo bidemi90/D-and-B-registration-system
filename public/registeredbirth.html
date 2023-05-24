@@ -2,7 +2,8 @@
 <html>
 
 <head>
-	<title>Birth Registration Form</title>
+	<title>Birth Register</title>
+	<link rel="shortcut icon" href="images/LOGO.png" type="image/x-icon">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -119,7 +120,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-xl bg-primary text-light">
+	<nav class="navbar navbar-expand-xl bg-success text-light">
 
 		</div>
 		<div class="container-fluid">
@@ -159,12 +160,11 @@
 							Print Certificate
 						</a>
 						<ul class="dropdown-menu bg-light">
-							<li><a class="dropdown-item " href="printbirth.html">Print Birth Certificate</a></li>
+							<li><a class="dropdown-item " href="registeredbirth.html">Print Birth Certificate</a></li>
 							<li>
 								<hr class="dropdown-divider ">
 							</li>
-							<li><a class="dropdown-item  outline-dark" href="printdeath.html">Print Death
-									Certificate</a></li>
+							<li><a class="dropdown-item  outline-dark" href="registereddeath.html">Print Death Certificate</a></li>
 						</ul>
 					</li>
 
@@ -177,11 +177,13 @@
 						type="submit">Search</button>
 					<button class="btn btn-outline-light m-1 text-dark" onclick="reloadit()"
 						type="submit">Cancle</button>
+					<a class="btn btn-outline-light m-1 text-dark" 
+						href="index.html">log out</a>
 				</div>
 			</div>
 		</div>
 	</nav>
-	<h2 class="clickkk">
+	<h2 class="text-success text-center text-capitalize ">
 		click to print Certificate
 	</h2>
 	<div class="show" id="show">
@@ -217,6 +219,14 @@
 
 <script>
 
+let userbd = JSON.parse(localStorage.getItem("userbd"))
+    console.log(userbd);
+
+    if (userbd == null) {
+        location.href="index.html"
+    }
+
+
 	let alldata = []
 	let index = 0
 	db.collection("birth-reg").get().then((querySnapshot) => {
@@ -229,11 +239,14 @@
 			alldata.push(doc.data())
 
 			document.getElementById("show").innerHTML += `
-			<button type="button" onclick=onedata(${index}) class="btn btn-outline-primary  onebutttoshow ">
-			<p>Name: ${element.childName}</p>
-			<p>mother's Name: ${element.motherName}</p>
-			<p>father's Name: ${element.fatherName}</p>
-		</button>
+			<div class="card m-2 bg-success text-light shadow p-3 mb-5  rounded" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Name: ${element.childName}</h5>
+    <p class="card-text">Mother's Name: ${element.motherName}</p>
+    <p class="card-text">Father's Name: ${element.fatherName}</p>
+    <button onclick=onedata(${index}) class="btn btn-success btn-outline-light" >print certificate</button>
+  </div>
+</div>
 		`
 			index++
 
@@ -270,11 +283,14 @@ let matches=[]
 				
             
 				resultDiv.innerHTML+=`
-		<button type="button" onclick=twodata(${index}) class="btn btn-outline-primary  onebutttoshow ">
-		<p>Name: ${item.childName}</p>
-	<p>mother's Name: ${item.motherName}</p>
-		<p>father's Name: ${item.fatherName}</p>
-		</button>`
+		<div class="card m-2 bg-success text-light shadow p-3 mb-5  rounded" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Name: ${item.childName}</h5>
+    <p class="card-text">Mother's Name: ${item.motherName}</p>
+    <p class="card-text">Father's Name: ${item.fatherName}</p>
+    <button onclick=twodata(${index}) class="btn btn-success btn-outline-light" >print certificate</button>
+  </div>
+</div>`
 		console.log(matches);
 			}
 		} else {
